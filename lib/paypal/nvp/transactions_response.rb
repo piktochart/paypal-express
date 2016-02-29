@@ -33,6 +33,7 @@ module Paypal
           end
         end
         @transactions = transactions.collect do |_attrs_|
+          binding.pry
           Payment::Response::Transaction.new _attrs_
         end
 
