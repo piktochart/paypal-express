@@ -31,11 +31,11 @@ module Paypal
             transactions[index.to_i][key.to_sym] = attrs.delete(_attr_)
           end
         end
-binding.pry
+
         @transactions = transactions.collect do |_attrs_|
           Payment::Response::Transaction.new( _attrs_ ) if _attrs_[:AMT].present?
         end
-binding.pry
+
         # warn ignored attrs
         attrs.each do |key, value|
           Paypal.log "Ignored Parameter (#{self.class}): #{key}=#{value}", :warn
