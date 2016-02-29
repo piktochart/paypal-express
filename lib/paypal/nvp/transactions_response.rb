@@ -19,21 +19,20 @@ module Paypal
 
       def initialize(attributes = {})
         attrs = attributes.dup
-binding.pry
+        binding.pry
         @@attribute_mapping.each do |key, value|
           self.send "#{value}=", attrs.delete(key)
         end
-binding.pry
+
         transactions = []
         attrs.keys.each do |_attr_|
-binding.pry
           key, index = _attr_.to_s.scan(/^L_(.+?)(\d+)$/).flatten
           if index
             transactions[index.to_i] ||= {}
             transactions[index.to_i][key.to_sym] = attrs.delete(_attr_)
           end
         end
-binding.pry
+
         @transactions = transactions.collect do |_attrs_|
           Payment::Response::Transaction.new _attrs_
         end
