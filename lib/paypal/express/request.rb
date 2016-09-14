@@ -42,7 +42,7 @@ module Paypal
 
       def transaction_details(transaction_id)
         response = self.request :GetTransactionDetails, {:TRANSACTIONID=> transaction_id}
-        Response.new response
+        #Response.new response
       end
 
       # https://developer.paypal.com/docs/classic/api/merchant/TransactionSearch_API_Operation_NVP/
